@@ -7,7 +7,7 @@ import local from "next/font/local";
 const SFPRO = local({
   src: [
     {
-      path: "../public/fonts/sf_regular.otf",
+      path: "/fonts/sf_regular.otf",
       weight: "400",
     }
   ],
@@ -17,7 +17,7 @@ const SFPRO = local({
 const Poppins = local({
   src: [
     {
-      path: "../public/fonts/Poppins-Regular.ttf",
+      path: "/fonts/Poppins-Regular.ttf",
       weight: "400",
     }
   ],
@@ -27,7 +27,7 @@ const Poppins = local({
 const GoogleSans = local({
   src: [
     {
-      path: "../public/fonts/ProductSans-Regular.ttf",
+      path: "/fonts/ProductSans-Regular.ttf",
       weight: "400",
     }
   ],
@@ -37,7 +37,7 @@ const GoogleSans = local({
 const BigJohn = local({
   src: [
     {
-      path: "../public/fonts/BigJohnPRO-Regular.otf",
+      path: "/fonts/BigJohnPRO-Regular.otf",
       weight: "400",
     }
   ],
