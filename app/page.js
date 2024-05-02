@@ -22,10 +22,13 @@ import {
 } from "@/components/ui/table";
 import Link from "next/link";
 import {
+  Component1Icon,
+  Component2Icon,
   Cross1Icon,
   ReloadIcon,
   SpeakerLoudIcon,
   SpeakerOffIcon,
+  TableIcon,
   VideoIcon,
 } from "@radix-ui/react-icons";
 
@@ -77,7 +80,7 @@ export default function Home() {
   return (
     <div className="w-full min-h-[100vh] flex items-center justify-center flex-col p-10">
       <h1 className="text-3xl font-bold fixed top-0 left-0 h-15 bg-slate-100 w-full flex items-center justify-center p-3 backdrop-blur-md z-10 bg-opacity-30">
-        Youtube Video Downloader
+        <Component2Icon className="ml-[5px]" /> <Component1Icon className="ml-[5px]" /> <TableIcon className="ml-[5px]" /> <VideoIcon className="ml-[5px]" />
       </h1>
 
       <div className="h-10"></div>
