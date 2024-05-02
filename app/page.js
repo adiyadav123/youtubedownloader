@@ -54,7 +54,7 @@ export default function Home() {
     } else {
       setBtnClicked(true);
     }
-    const url = "https://youtubedownloader-ten.vercel.app/api/";
+    const url = "https://youtubedownloader-ten.vercel.app//api/";
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -62,9 +62,24 @@ export default function Home() {
       },
       body: JSON.stringify({ url: videoURL }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if(!res.ok) {
+          setBtnClicked(false);
+          return toast({
+            title: "Uh Oh! Something went wrong",
+            description: "Please enter a valid YouTube URL",
+          })
+        }
+        res.json()
+      })
       .then((data) => {
-        console.log(data);
+        if(!data.info || !data.videoFormats) {
+          setBtnClicked(false);
+          return toast({
+            title: "Uh Oh! Something went wrong",
+            description: "Please enter a valid YouTube URL",
+          })
+        }
         setBtnClicked(false);
         setVideoInfo((prevState) => [...prevState, data.info]);
         setAllVideosArray((allVid) => [...allVid, data.videoFormats]);
