@@ -62,16 +62,7 @@ export default function Home() {
       },
       body: JSON.stringify({ url: videoURL }),
     })
-      .then((res) => {
-        if(!res.ok) {
-          setBtnClicked(false);
-          return toast({
-            title: "Uh Oh! Something went wrong",
-            description: "Please enter a valid YouTube URL",
-          })
-        }
-        res.json()
-      })
+      .then((res) => res.json())
       .then((data) => {
         if(!data.info || !data.videoFormats) {
           setBtnClicked(false);
