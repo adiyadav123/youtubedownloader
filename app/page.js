@@ -51,7 +51,7 @@ export default function Home() {
     } else {
       setBtnClicked(true);
     }
-    const url = "http://localhost:3000/api/";
+    const url = "http://ytdownloader.vercel.app/api/";
     const response = await fetch(url, {
       method: "POST",
       headers: {
