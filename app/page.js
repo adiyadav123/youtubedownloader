@@ -75,7 +75,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full min-h-[100vh] flex items-center justify-center flex-col p-10 font-SFPRO">
+    <div className="w-full min-h-[100vh] flex items-center justify-center flex-col p-10">
       <h1 className="text-3xl font-bold fixed top-0 left-0 h-15 bg-slate-100 w-full flex items-center justify-center p-3 backdrop-blur-md z-10 bg-opacity-30">
         Youtube Video Downloader
       </h1>

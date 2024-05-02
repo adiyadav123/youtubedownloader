@@ -22,12 +22,6 @@ module.exports = {
       },
     },
     extend: {
-      fontFamily: {
-        SFPRO: ['SFPRO', 'sans-serif'],
-        GoogleSans: ['GoogleSans', 'sans-serif'],
-        Poppins: ['Poppins', 'sans-serif'],
-        BigJohn: ['BigJohn', 'sans-serif'],
-      },
       colors: {
         yellow: "#FECA03",
         border: "hsl(var(--border))",

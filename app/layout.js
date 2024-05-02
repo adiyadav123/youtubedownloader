@@ -2,47 +2,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
-import local from "next/font/local";
-
-const SFPRO = local({
-  src: [
-    {
-      path: "../public/fonts/sf_regular.otf",
-      weight: "400",
-    }
-  ],
-  variable: '--font-sfpro'
-})
-
-const Poppins = local({
-  src: [
-    {
-      path: "../public/fonts/Poppins-Regular.ttf",
-      weight: "400",
-    }
-  ],
-  variable: '--font-poppins'
-})
-
-const GoogleSans = local({
-  src: [
-    {
-      path: "../public/fonts/ProductSans-Regular.ttf",
-      weight: "400",
-    }
-  ],
-  variable: '--font-gsans'
-})
-
-const BigJohn = local({
-  src: [
-    {
-      path: "../public/fonts/BigJohnPRO-Regular.otf",
-      weight: "400",
-    }
-  ],
-  variable: '--font-bigjohn'
-})
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -94,7 +53,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${SFPRO.variable} ${BigJohn.variable} ${GoogleSans.variable} ${Poppins.variable} ${inter.className}`}>
+      <body className={`${inter.className}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
