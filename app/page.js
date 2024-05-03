@@ -27,6 +27,8 @@ import {
   Component2Icon,
   Cross1Icon,
   MoonIcon,
+  PauseIcon,
+  PlayIcon,
   ReloadIcon,
   SpeakerLoudIcon,
   SpeakerOffIcon,
@@ -53,6 +55,8 @@ export default function Home() {
   const [VideoInfo, setVideoInfo] = useState([]);
   const [AudioVideo, setAudioVideo] = useState([]);
   const [AudioOnly, setAudioOnly] = useState([]);
+  const [playingStates, setPlayingStates] = useState({});
+  const [playingAudio, setPlayingAudio] = useState(null);
 
   const handleClick = async () => {
     if (!videoURL) {
@@ -67,7 +71,7 @@ export default function Home() {
     } else {
       setBtnClicked(true);
     }
-    const url = "https://youtubedownloader-ten.vercel.app/api/";
+    const url = "http://localhost:3000/api/";
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -196,25 +200,33 @@ export default function Home() {
               <Accordion type="single" collapsible className="w-[80vw]">
                 <AccordionItem value="item-1">
                   <AccordionTrigger>Title</AccordionTrigger>
-                  <AccordionContent className="text-yellow" >{info.title}</AccordionContent>
+                  <AccordionContent className="text-yellow">
+                    {info.title}
+                  </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
                   <AccordionTrigger>View Count</AccordionTrigger>
-                  <AccordionContent className="text-yellow" >{info.viewCount}</AccordionContent>
+                  <AccordionContent className="text-yellow">
+                    {info.viewCount}
+                  </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-3">
                   <AccordionTrigger>Length</AccordionTrigger>
-                  <AccordionContent className="text-yellow" >
+                  <AccordionContent className="text-yellow">
                     {(parseInt(info.lengthSeconds) / 60).toFixed(2)} minutes
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-4">
                   <AccordionTrigger>Channel Name</AccordionTrigger>
-                  <AccordionContent className="text-yellow">{info.channelName}</AccordionContent>
+                  <AccordionContent className="text-yellow">
+                    {info.channelName}
+                  </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-5">
                   <AccordionTrigger>Subscriber Count</AccordionTrigger>
-                  <AccordionContent className="text-yellow" >{info.subscriberCount}</AccordionContent>
+                  <AccordionContent className="text-yellow">
+                    {info.subscriberCount}
+                  </AccordionContent>
                 </AccordionItem>
               </Accordion>
             </div>
@@ -342,6 +354,7 @@ export default function Home() {
                         <TableRow>
                           <TableHead className="w-[20vw]">Quality</TableHead>
                           <TableHead className="w-[20vw]">Type</TableHead>
+                          <TableHead className="w-[20vw]">Demo</TableHead>
                           <TableHead>Video</TableHead>
                           <TableHead className="text-right w-[20vw]">
                             Link
@@ -358,6 +371,37 @@ export default function Home() {
                               <SpeakerLoudIcon className=" text-yellow" />
                             ) : (
                               <SpeakerOffIcon className=" text-red-600" />
+                            )}
+                          </TableCell>
+                          <TableCell>
+                            {playingStates[audio.url] ? (
+                              <Button
+                                onClick={() => {
+                                  setPlayingStates((prevStates) => ({
+                                    ...prevStates,
+                                    [audio.url]: false,
+                                  }));
+                                  if (playingAudio) {
+                                    playingAudio.pause();
+                                  }
+                                }}
+                              >
+                                <PauseIcon />
+                              </Button>
+                            ) : (
+                              <Button
+                                onClick={() => {
+                                  setPlayingStates((prevStates) => ({
+                                    ...prevStates,
+                                    [audio.url]: true,
+                                  }));
+                                  const audioElement = new Audio(audio.url);
+                                  audioElement.play();
+                                  setPlayingAudio(audioElement);
+                                }}
+                              >
+                                <PlayIcon />
+                              </Button>
                             )}
                           </TableCell>
                           <TableCell>
@@ -389,7 +433,11 @@ export default function Home() {
       </div>
       <div className="footer w-full fixed bottom-0 left-0 h-10 bg-slate-100 flex items-center justify-center backdrop-blur-md bg-opacity-15">
         Made with ❤️ by{" "}
-        <Link href="https://github.com/adiyadav123" target="_blank" className="ml-1">
+        <Link
+          href="https://github.com/adiyadav123"
+          target="_blank"
+          className="ml-1"
+        >
           Aditya Yadav
         </Link>
       </div>
