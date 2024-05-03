@@ -389,7 +389,7 @@ export default function Home() {
       </div>
       <div className="footer w-full fixed bottom-0 left-0 h-10 bg-slate-100 flex items-center justify-center backdrop-blur-md bg-opacity-15">
         Made with ❤️ by{" "}
-        <Link href="#home" className="ml-1">
+        <Link href="https://github.com/adiyadav123" className="ml-1">
           Aditya Yadav
         </Link>
       </div>
