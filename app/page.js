@@ -71,7 +71,7 @@ export default function Home() {
     } else {
       setBtnClicked(true);
     }
-    const url = "http://localhost:3000/api/";
+    const url = "https://youtubedownloader-ten.vercel.app/api/";
     const response = await fetch(url, {
       method: "POST",
       headers: {
