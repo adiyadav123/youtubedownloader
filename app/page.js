@@ -196,25 +196,25 @@ export default function Home() {
               <Accordion type="single" collapsible className="w-[80vw]">
                 <AccordionItem value="item-1">
                   <AccordionTrigger>Title</AccordionTrigger>
-                  <AccordionContent>{info.title}</AccordionContent>
+                  <AccordionContent className="text-yellow" >{info.title}</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
                   <AccordionTrigger>View Count</AccordionTrigger>
-                  <AccordionContent>{info.viewCount}</AccordionContent>
+                  <AccordionContent className="text-yellow" >{info.viewCount}</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-3">
                   <AccordionTrigger>Length</AccordionTrigger>
-                  <AccordionContent>
+                  <AccordionContent className="text-yellow" >
                     {(parseInt(info.lengthSeconds) / 60).toFixed(2)} minutes
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-4">
                   <AccordionTrigger>Channel Name</AccordionTrigger>
-                  <AccordionContent>{info.channelName}</AccordionContent>
+                  <AccordionContent className="text-yellow">{info.channelName}</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-5">
                   <AccordionTrigger>Subscriber Count</AccordionTrigger>
-                  <AccordionContent>{info.subscriberCount}</AccordionContent>
+                  <AccordionContent className="text-yellow" >{info.subscriberCount}</AccordionContent>
                 </AccordionItem>
               </Accordion>
             </div>
