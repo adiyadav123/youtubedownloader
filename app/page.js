@@ -1,5 +1,10 @@
 "use client";
 
+import { FaApple } from "react-icons/fa";
+import { FaAndroid } from "react-icons/fa";
+import { SiWindows } from "react-icons/si";
+import { FaLinux } from "react-icons/fa";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
@@ -79,7 +84,17 @@ export default function Home() {
       },
       body: JSON.stringify({ url: videoURL }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          setBtnClicked(false);
+          return toast({
+            title: "Uh Oh! Something went wrong",
+            description: "Please enter a valid YouTube URL",
+          });
+        } else {
+          return res.json();
+        }
+      })
       .then((data) => {
         if (data.info < 0 || data.videoFormats < 0) {
           setBtnClicked(false);
@@ -95,6 +110,13 @@ export default function Home() {
         setDownloadURL(data.url);
         setAudioVideo((audVid) => [...audVid, data.formattedFormats]);
         setAudioOnly((audOnly) => [...audOnly, data.audioOnly]);
+      })
+      .catch((err) => {
+        setBtnClicked(false);
+        return toast({
+          title: "Uh Oh! Something went wrong",
+          description: "Please enter a valid YouTube URL",
+        });
       });
   };
 
@@ -152,8 +174,11 @@ export default function Home() {
           alt="Download Videos"
         />
         <div>
-          <h2 className="text-2xl font-bold">Download Videos</h2>
-          <p className="text-gray-500">Download YouTube videos in any format</p>
+          <h1 className="text-2xl font-bold">Download Youtube Videos</h1>
+          <p className="text-gray-500 max-w-[300px]">
+            Downloading YouTube videos with OffTube is a breeze. Simply paste
+            the link and choose your download format.
+          </p>
           <div className="h-5"></div>
           <Input
             onChange={updateValue}
@@ -258,9 +283,7 @@ export default function Home() {
                           <TableCell className="font-medium">
                             {video.quality}
                           </TableCell>
-                          <TableCell>
-                            {video.hasVideo ? <VideoIcon /> : <Cross1Icon />}
-                          </TableCell>
+                          <TableCell>{video.container}</TableCell>
                           <TableCell>
                             {video.hasAudio ? (
                               <SpeakerLoudIcon className=" text-yellow" />
@@ -310,13 +333,7 @@ export default function Home() {
                       <TableCell className="font-medium">
                         {video.quality}
                       </TableCell>
-                      <TableCell>
-                        {video.hasVideo ? (
-                          <VideoIcon className=" text-yellow" />
-                        ) : (
-                          <Cross1Icon />
-                        )}
-                      </TableCell>
+                      <TableCell>{video.container}</TableCell>
                       <TableCell>
                         {video.hasAudio ? (
                           <SpeakerLoudIcon className="text-yellow" />
@@ -366,13 +383,7 @@ export default function Home() {
                           <TableCell className="font-medium">
                             {audio.audioQuality.split("_")[2]}
                           </TableCell>
-                          <TableCell>
-                            {audio.hasAudio ? (
-                              <SpeakerLoudIcon className=" text-yellow" />
-                            ) : (
-                              <SpeakerOffIcon className=" text-red-600" />
-                            )}
-                          </TableCell>
+                          <TableCell>mp3</TableCell>
                           <TableCell>
                             {playingStates[audio.url] ? (
                               <Button
@@ -431,6 +442,31 @@ export default function Home() {
           );
         })}
       </div>
+
+      <div className="about_section w-full p-10 max-w-[900px] border rounded-md transition-all cursor-pointer shadow-2xl hover:scale-110 ">
+        <p className="">
+          OffTube is a free online YouTube video downloader that allows you to
+          download videos from YouTube in various formats. You can download
+          videos in mp4, mp3, and other formats. It is a fast, user-friendly
+          downloader that lets you enjoy your favorite videos offline, anytime,
+          anywhere.
+        </p>
+      </div>
+
+      <div className="h-10"></div>
+
+      <div className="supported_platforms w-full max-w-[900px] ">
+        <h1 className="text-2xl font-bold text-center">Supported Platforms</h1>
+        <div className="flex items-center justify-between w-full ">
+          <FaApple className=" h-[150px] w-[100px]" />
+          <FaAndroid className="  h-[150px] w-[100px]" />
+          <SiWindows className="  h-[150px] w-[100px]" />
+          <FaLinux className=" h-[150px] w-[100px]" />
+        </div>
+      </div>
+
+      <div className="w-full h-[50px]"></div>
+
       <div className="footer w-full fixed bottom-0 left-0 h-10 bg-slate-100 flex items-center justify-center backdrop-blur-md bg-opacity-15">
         Made with ❤️ by{" "}
         <Link

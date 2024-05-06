@@ -20,6 +20,25 @@ export async function POST(request) {
     }
 
 
+    // const formattedHighestVideo = highestQualityVideo.map((format) => {
+    //   return {
+    //     itag: format.itag,
+    //     quality: format.qualityLabel,
+    //     url: format.url,
+    //     mimeType: format.mimeType,
+    //     container: format.container,
+    //     codec: format.codecs,
+    //     audioBitrate: format.audioBitrate,
+    //     videoBitrate: format.bitrate,
+    //     audioQuality: format.audioQuality,
+    //     videoQuality: format.quality,
+    //     hasAudio: format.hasAudio,
+    //     hasVideo: format.hasVideo,
+    //     isLive: format.isLive,
+    //     isHLS: format.isHLS,
+    //   }
+    // })
+
     const infoFormatted = {
       title: info.videoDetails.title,
       thumbnail: info.videoDetails.thumbnails[0].url,

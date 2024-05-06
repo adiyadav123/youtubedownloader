@@ -6,10 +6,10 @@ import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
 
-const APP_NAME = "YT Downloader";
-const APP_DEFAULT_TITLE = "YT Downloader";
+const APP_NAME = "OffTube";
+const APP_DEFAULT_TITLE = "OffTube";
 const APP_TITLE_TEMPLATE = "%s - YT Downloader";
-const APP_DESCRIPTION = "Download YouTube videos in any format";
+const APP_DESCRIPTION = "Ditch the frustration! Download YouTube videos easily and safely with OffTube, the fast, user-friendly downloader. Enjoy them offline, anytime, anywhere.";
 
 export const metadata = {
   applicationName: APP_NAME,
