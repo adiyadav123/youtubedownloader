@@ -7,12 +7,6 @@ require("events").EventEmitter.setMaxListeners(15);
 export async function POST(request) {
 
 
-  await NextCors(request, {
-    methods: ["POST"],
-    origin: "*",
-    optionsSuccessStatus: 200,
-  })
-
   const urlObj = await request.json();
   if (!urlObj.url) {
     return new Response("URL is required", { status: 400 });
