@@ -1,10 +1,35 @@
 import { Inter } from "next/font/google";
+import localFont from '@next/font/local'
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
+const hatton = localFont({
+  src: [
+    { path: '../public/fonts/hatton.otf', weight: '700' }
+  ],
+  variable: '--font-hatton'
+});
+const bigJohn = localFont({
+  src: [
+    { path: '../public/fonts/BigJohnPRO-Regular.otf', weight: '700' },
+  ],
+  variable: '--font-big-john'
+});
+const poppins = localFont({
+  src: [
+    { path: '../public/fonts/Poppins-Regular.ttf', weight: '400' },
+  ],
+  variable: '--font-poppins'
+});
+const googleSans = localFont({
+  src: [
+    { path: '../public/fonts/googlesans.woff2', weight: '400' },
+  ],
+  variable: '--font-google-sans'
+});
 
 const APP_NAME = "OffTube";
 const APP_DEFAULT_TITLE = "OffTube";
@@ -54,7 +79,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className=" scroll-smooth">
-      <body className={`${inter.className}`}>
+      <body className={`${inter.className} ${hatton.variable} ${poppins.variable} ${googleSans.variable} ${bigJohn.variable} font-sans`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

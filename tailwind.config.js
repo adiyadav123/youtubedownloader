@@ -9,6 +9,12 @@ module.exports = {
   ],
   prefix: "",
   theme: {
+    fontFamily: {
+      hatton: ["var(--font-hatton)", "sans-serif"],
+      bigJohn: ["var(--font-big-john)", "sans-serif"],
+      poppins: ["var(--font-poppins)", "sans-serif"],
+      googleSans: ["var(--font-google-sans)", "sans-serif"],
+    },
     extend: {
       backdropBlur: {
         '10': '10px',

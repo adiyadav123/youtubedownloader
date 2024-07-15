@@ -50,6 +50,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
+import HowTo from "@/components/HowTo";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const { setTheme } = useTheme();
@@ -62,6 +64,8 @@ export default function Home() {
   const [AudioOnly, setAudioOnly] = useState([]);
   const [playingStates, setPlayingStates] = useState({});
   const [playingAudio, setPlayingAudio] = useState(null);
+
+  const router = useRouter();
 
   const handleClick = async () => {
     if (!videoURL) {
@@ -76,7 +80,7 @@ export default function Home() {
     } else {
       setBtnClicked(true);
     }
-    const url = "https://youtubedownloader-ten.vercel.app/api/youtube";
+    const url = "/api/youtube";
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -174,8 +178,8 @@ export default function Home() {
           alt="Download Videos"
         />
         <div>
-          <h1 className="text-2xl font-bold">Download Youtube Videos</h1>
-          <p className="text-gray-500 max-w-[300px]">
+          <h1 className="text-2xl font-hatton">Download Youtube Videos</h1>
+          <p className="text-gray-500 max-w-[300px] font-bigJohn">
             Downloading YouTube videos with OffTube is a breeze. Simply paste
             the link and choose your download format.
           </p>
@@ -183,7 +187,7 @@ export default function Home() {
           <Input
             onChange={updateValue}
             placeholder="Enter the video URL..."
-            className="max-w-[80vw] border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow"
+            className="max-w-[80vw] border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow font-bigJohn"
           />
 
           <div className="h-10"></div>
@@ -198,7 +202,7 @@ export default function Home() {
           ) : (
             <Button
               onClick={handleClick}
-              className=" w-full bg-yellow text-black hover:bg-slate-100 transition-all"
+              className=" w-full bg-yellow text-black hover:bg-slate-100 transition-all font-bigJohn"
             >
               {" "}
               Search
@@ -292,14 +296,14 @@ export default function Home() {
                             )}
                           </TableCell>
                           <TableCell className="text-right">
-                            <Link
-                              href={video.url}
+                            <p
                               className=" underline"
-                              type="file"
-                              download
+                              onClick={() => {
+                                router.push(video.url);
+                              }}
                             >
                               Download
-                            </Link>
+                            </p>
                           </TableCell>
                         </TableRow>
                         <div className="h-[10px]"></div>
@@ -342,13 +346,14 @@ export default function Home() {
                         )}
                       </TableCell>
                       <TableCell className="text-right">
-                        <Link
-                          href={video.url}
-                          className=" underline"
-                          target="_blank"
+                        <p
+                          className=" underline cursor-pointer"
+                          onClick={() => {
+                            router.push(video.url);
+                          }}
                         >
                           Download
-                        </Link>
+                        </p>
                       </TableCell>
                     </TableRow>
                     <div className="h-[10px]"></div>
@@ -423,13 +428,14 @@ export default function Home() {
                             )}
                           </TableCell>
                           <TableCell className="text-right">
-                            <Link
-                              href={audio.url}
-                              className=" underline"
-                              target="_blank"
+                            <p
+                              className=" underline cursor-pointer"
+                              onClick={() => {
+                                router.push(audio.url);
+                              }}
                             >
                               Download
-                            </Link>
+                            </p>
                           </TableCell>
                         </TableRow>
                         <div className="h-[10px]"></div>
@@ -445,7 +451,7 @@ export default function Home() {
       </div>
 
       <div className="about_section w-full p-10 max-w-[900px] border rounded-md transition-all cursor-pointer shadow-2xl hover:scale-110 ">
-        <p className="">
+        <p className=" font-bigJohn">
           OffTube is a free online YouTube video downloader that allows you to
           download videos from YouTube in various formats. You can download
           videos in mp4, mp3, and other formats. It is a fast, user-friendly
@@ -457,7 +463,7 @@ export default function Home() {
       <div className="h-10"></div>
 
       <div className="supported_platforms w-full max-w-[900px] ">
-        <h1 className="text-2xl font-bold text-center">Supported Platforms</h1>
+        <h1 className="text-[40px] font-bold text-center font-hatton">Supported Platforms</h1>
         <div className="flex items-center justify-between w-full ">
           <FaApple className=" h-[150px] w-[100px]" />
           <FaAndroid className="  h-[150px] w-[100px]" />
@@ -465,6 +471,10 @@ export default function Home() {
           <FaLinux className=" h-[150px] w-[100px]" />
         </div>
       </div>
+
+      <div className="h-10"></div>
+
+      {/* <HowTo /> */}
 
       <div className="w-full h-[50px]"></div>
 
